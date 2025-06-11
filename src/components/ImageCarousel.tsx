@@ -74,7 +74,7 @@ const ImageCarousel = () => {
     arrows: false,
     fade: false,
     cssEase: 'cubic-bezier(0.23, 1, 0.32, 1)',
-    beforeChange: (current: number, next: number) => {
+    beforeChange: ( next: number) => {
       const imgs = document.querySelectorAll('.slick-slide img');
       imgs.forEach((img, idx) => {
         (img as HTMLElement).style.transform = idx === next + 1 ? 'scale(1.08)' : 'scale(1)';
@@ -83,7 +83,7 @@ const ImageCarousel = () => {
     },
     afterChange: () => {
       const imgs = document.querySelectorAll('.slick-slide img');
-      imgs.forEach((img, idx) => {
+      imgs.forEach((img) => {
         (img as HTMLElement).style.transform = 'scale(1)';
         (img as HTMLElement).style.opacity = '1';
       });
