@@ -7,9 +7,10 @@ import { useState } from 'react';
 const CounterContainer = styled(Paper)`
   padding: 2rem;
   border-radius: 16px;
-  background: linear-gradient(145deg, #ffffff, #f5f5f5);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background: rgba(26, 42, 36, 0.85);
+  box-shadow: 0 8px 32px rgba(24, 92, 76, 0.13);
   text-align: center;
+  color: #fff;
 `;
 
 const AnimatedBox = styled(motion(Box))`
@@ -22,12 +23,12 @@ const AnimatedBox = styled(motion(Box))`
 const NumberDisplay = styled(Typography)`
   font-size: 3rem;
   font-weight: bold;
-  color: #ff4081;
+  color: #1DB954;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 const LabelText = styled(Typography)`
-  color: #666;
+  color: #b3b3b3;
   font-size: 1.1rem;
 `;
 
@@ -41,7 +42,7 @@ const LoveCounter = ({ startDate }: LoveCounterProps) => {
 
   return (
     <CounterContainer elevation={3}>
-      <Divider sx={{ mb: 3 }} />
+      <Divider sx={{ mb: 3, bgcolor: '#1DB954', opacity: 0.4 }} />
       
       <AnimatedBox
         initial={{ opacity: 0, scale: 0.8 }}
@@ -60,7 +61,7 @@ const LoveCounter = ({ startDate }: LoveCounterProps) => {
         variant="body2" 
         sx={{ 
           mt: 2, 
-          color: '#888',
+          color: '#b3b3b3',
           fontStyle: 'italic'
         }}
       >

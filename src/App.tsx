@@ -1,6 +1,6 @@
 import { ThemeProvider, createTheme } from '@mui/material';
 import styled from '@emotion/styled';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import MusicPlayer from './components/MusicPlayer';
 import ImageCarousel from './components/ImageCarousel';
 import LoveCounter from './components/LoveCounter';
@@ -10,8 +10,12 @@ const BackgroundPhoto = styled('div')`
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100vw;
   height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   z-index: -2;
   background: url('/couple-photo.jpg') center center/cover no-repeat;
 `;
@@ -77,13 +81,7 @@ const ContentContainer = styled('div')`
 `;
 
 function App() {
-  const [startDate] = useState(new Date('2024-01-01'));
-
-  useEffect(() => {
-    setTimeout(() => {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }, 1200);
-  }, []);
+  const [startDate] = useState(new Date('2024-09-19'));
 
   return (
     <ThemeProvider theme={theme}>

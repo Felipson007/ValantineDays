@@ -5,14 +5,15 @@ import { motion } from 'framer-motion';
 const MessageContainer = styled(Paper)`
   padding: 2rem;
   border-radius: 16px;
-  background: linear-gradient(145deg, #ffffff, #f5f5f5);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background: rgba(26, 42, 36, 0.85);
+  box-shadow: 0 8px 32px rgba(24, 92, 76, 0.13);
   text-align: center;
+  color: #fff;
 `;
 
 const AnimatedTypography = styled(motion(Typography))`
   margin-bottom: 1rem;
-  color: #ff4081;
+  color: #fff;
 `;
 
 const SmallHeart = styled(motion.div)`
@@ -24,8 +25,8 @@ const SmallHeart = styled(motion.div)`
   position: relative;
   top: 6px;
   transform: rotate(45deg);
-  background-color: rgba(255, 64, 129, 0.9);
-  box-shadow: 0 0 12px rgba(255, 64, 129, 0.3);
+  background-color: #1DB954;
+  box-shadow: 0 0 12px rgba(29, 185, 84, 0.3);
   
   &::before,
   &::after {
@@ -34,7 +35,7 @@ const SmallHeart = styled(motion.div)`
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background-color: rgba(255, 64, 129, 0.9);
+    background-color: #1DB954;
   }
   &::before {
     top: -16px;
@@ -54,6 +55,7 @@ const LoveMessage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
+        sx={{ color: '#fff' }}
       >
         Para o amor da minha vida
       </AnimatedTypography>
@@ -63,7 +65,7 @@ const LoveMessage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        sx={{ color: '#666', lineHeight: 1.8 }}
+        sx={{ color: '#e0e0e0', lineHeight: 1.8 }}
       >
         Cada momento ao seu lado é uma nova aventura de amor e felicidade.
         Você é minha inspiração, minha melhor amiga e meu maior amor.
@@ -76,7 +78,7 @@ const LoveMessage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
         sx={{ 
-          color: '#f50057',
+          color: '#b3b3b3',
           fontStyle: 'italic',
           marginTop: '1rem',
           display: 'flex',

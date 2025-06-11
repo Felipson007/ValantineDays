@@ -9,14 +9,17 @@ const PlayerContainer = styled('div')`
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #185C4C 0%, #F6E7C1 100%);
+  border-radius: 18px;
+  background: #1A2A24;
   box-shadow: 0 8px 32px rgba(24, 92, 76, 0.13);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 1.5rem 1rem;
-  gap: 1.2rem;
+  align-items: flex-start;
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  position: relative;
+  @media (max-width: 600px) {
+    padding: 1rem 0.5rem;
+  }
 `;
 
 const PlayerContent = styled('div')`
@@ -24,26 +27,30 @@ const PlayerContent = styled('div')`
   align-items: center;
   width: 100%;
   gap: 1.2rem;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: center;
+  }
 `;
 
 const AlbumArt = styled('div')<{ spinning: boolean }>`
-  width: 90px;
-  height: 90px;
-  border-radius: 16px;
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
   overflow: hidden;
-  border: 4px solid #F6E7C1;
   box-shadow: 0 4px 24px rgba(24, 92, 76, 0.10);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: #222;
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
     animation: ${({ spinning }) =>
-      spinning ? 'spin 3s linear infinite' : 'none'};
+      spinning ? 'spin 7s linear infinite' : 'none'};
   }
   @keyframes spin {
     100% { transform: rotate(360deg); }
@@ -56,50 +63,72 @@ const SongInfo = styled('div')`
   flex-direction: column;
   justify-content: center;
   min-width: 0;
+  @media (max-width: 600px) {
+    width: 100%;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
 `;
 
 const SongTitle = styled('div')`
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #F6E7C1;
+  font-weight: 700;
+  font-size: 1.18rem;
+  color: #fff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  @media (max-width: 600px) {
+    white-space: normal;
+    font-size: 1.05rem;
+    margin-bottom: 0.1rem;
+    text-align: center;
+  }
 `;
 
 const SongArtist = styled('div')`
-  font-size: 0.95rem;
-  color: #F6E7C1;
-  opacity: 0.85;
+  font-size: 0.98rem;
+  color: #b3b3b3;
+  opacity: 0.95;
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    text-align: center;
+  }
 `;
 
 const Controls = styled('div')`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.7rem;
+  @media (max-width: 600px) {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
 `;
 
 const StyledButton = styled('button')`
-  background: #F6E7C1;
-  color: #185C4C;
+  background: #fff;
+  color: #222;
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 54px;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.1s;
+  font-size: 2.1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s, color 0.2s;
   &:hover {
-    background: #185C4C;
-    color: #F6E7C1;
+    background: #1DB954;
+    color: #fff;
   }
 `;
 
 const VolumeSlider = styled('input')`
   width: 70px;
-  accent-color: #F6E7C1;
+  accent-color: #b3b3b3;
 `;
 
 const MusicPlayer = () => {
@@ -136,14 +165,14 @@ const MusicPlayer = () => {
           <img src="/eu-te-amo-pericles.jpg" alt="Capa Eu Te Amo - Péricles" />
         </AlbumArt>
         <SongInfo>
-          <SongTitle>Eu Te Amo</SongTitle>
+          <SongTitle>Eu Te Amo - Ao Vivo</SongTitle>
           <SongArtist>Péricles</SongArtist>
         </SongInfo>
         <Controls>
           <StyledButton onClick={() => setIsPlaying((p) => !p)}>
-            {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+            {isPlaying ? <PauseIcon fontSize="large" /> : <PlayArrowIcon fontSize="large" />}
           </StyledButton>
-          <VolumeDown style={{ color: '#F6E7C1' }} />
+          <VolumeDown style={{ color: '#b3b3b3' }} />
           <VolumeSlider
             type="range"
             min={0}
@@ -152,7 +181,7 @@ const MusicPlayer = () => {
             value={volume}
             onChange={e => setVolume(Number(e.target.value))}
           />
-          <VolumeUp style={{ color: '#F6E7C1' }} />
+          <VolumeUp style={{ color: '#b3b3b3' }} />
         </Controls>
       </PlayerContent>
       <audio
