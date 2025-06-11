@@ -70,8 +70,8 @@ const LoveMessage = () => {
         Feliz Dia dos Namorados, minha princesa.
         Você me fez entender o quanto o amor pode ser leve, gostoso e verdadeiro. Mesmo com algumas desavenças, a gente sempre se fortalece e melhora juntos. Sou grato por tudo que você fez por mim quando eu estava no fundo do poço — e por tudo que ainda faz todos os dias.
         Amo sua companhia, mesmo quando eu sou chato e insuportável. Amo sair com você, com sua família, e principalmente, amo ter você ao meu lado em todos os momentos.
-        Você é a minha princesa emburrada, dramática e cabeçuda — e é também a luz da minha vida.
-        Te amo demais. ❤️
+        Você é a minha princesa emburrada, dramática e cabeçuda — e é também a luz da minha vida. Que esse seja nosso primeiro dia dos namorados juntos de muitos outros.
+        Te amo demais minha princesa maravilhosa. ❤️
       </AnimatedTypography>
       
       <AnimatedTypography
