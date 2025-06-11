@@ -81,11 +81,11 @@ const ImageCarousel = () => {
         (img as HTMLElement).style.opacity = idx === next + 1 ? '1' : '0.85';
       });
     },
-    afterChange: (current: number) => {
+    afterChange: () => {
       const imgs = document.querySelectorAll('.slick-slide img');
       imgs.forEach((img, idx) => {
-        (img as HTMLElement).style.transform = idx === current + 1 ? 'scale(1.08)' : 'scale(1)';
-        (img as HTMLElement).style.opacity = idx === current + 1 ? '1' : '0.85';
+        (img as HTMLElement).style.transform = 'scale(1)';
+        (img as HTMLElement).style.opacity = '1';
       });
     },
   };
