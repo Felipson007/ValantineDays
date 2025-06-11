@@ -48,7 +48,7 @@ const AlbumArt = styled('div')<{ spinning: boolean }>`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 50%;
     animation: ${({ spinning }) =>
       spinning ? 'spin 7s linear infinite' : 'none'};
   }
@@ -110,7 +110,7 @@ const StyledButton = styled('button')`
   background: #fff;
   color: #222;
   border: none;
-  border-radius: 50%;
+  border-radius: 100%;
   width: 54px;
   height: 54px;
   display: flex;
