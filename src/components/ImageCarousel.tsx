@@ -34,28 +34,30 @@ const SlideImage = styled('div')`
 
 const SUPPORTED_EXTS = ['jpg', 'jpeg', 'png', 'webp'];
 
-function getImageUrls() {
-  const urls: string[] = [];
-  for (let i = 1; i <= 20; i++) { // Limite de 20 imagens
-    for (const ext of SUPPORTED_EXTS) {
-      const url = `/image${i}.${ext}`;
-      const req = new XMLHttpRequest();
-      req.open('HEAD', url, false);
-      req.send();
-      if (req.status >= 200 && req.status < 400) {
-        urls.push(url);
-        break;
-      }
-    }
-  }
-  return urls;
-}
-
 const ImageCarousel = () => {
   const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
-    setImages(getImageUrls());
+    let isMounted = true;
+    const foundImages: string[] = [];
+    const maxImages = 20;
+
+    for (let i = 1; i <= maxImages; i++) {
+      let foundForThisIndex = false;
+      for (const ext of SUPPORTED_EXTS) {
+        const url = `/image${i}.${ext}`;
+        const img = new window.Image();
+        img.src = url;
+        img.onload = () => {
+          if (isMounted && !foundForThisIndex) {
+            foundForThisIndex = true;
+            foundImages.push(url);
+            setImages([...foundImages]);
+          }
+        };
+      }
+    }
+    return () => { isMounted = false; };
   }, []);
 
   const settings = {
