@@ -5,6 +5,7 @@ import MusicPlayer from './components/MusicPlayer';
 import ImageCarousel from './components/ImageCarousel';
 import LoveCounter from './components/LoveCounter';
 import LoveMessage from './components/LoveMessage';
+import HeartAnimation from './components/HeartAnimation';
 
 const theme = createTheme({
   palette: {
@@ -57,6 +58,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <HeartAnimation />
       <AppContainer>
         <ContentContainer>
           <MusicPlayer />

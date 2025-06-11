@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Paper } from '@mui/material';
 import styled from '@emotion/styled';
 import Slider from 'react-slick';
@@ -31,7 +32,32 @@ const SlideImage = styled('div')`
   }
 `;
 
+const SUPPORTED_EXTS = ['jpg', 'jpeg', 'png', 'webp'];
+
+function getImageUrls() {
+  const urls: string[] = [];
+  for (let i = 1; i <= 20; i++) { // Limite de 20 imagens
+    for (const ext of SUPPORTED_EXTS) {
+      const url = `/image${i}.${ext}`;
+      const req = new XMLHttpRequest();
+      req.open('HEAD', url, false);
+      req.send();
+      if (req.status >= 200 && req.status < 400) {
+        urls.push(url);
+        break;
+      }
+    }
+  }
+  return urls;
+}
+
 const ImageCarousel = () => {
+  const [images, setImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    setImages(getImageUrls());
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -45,14 +71,15 @@ const ImageCarousel = () => {
     cssEase: 'linear',
   };
 
-  // Array de imagens - substitua pelos caminhos das suas imagens
-  const images = [
-    '/image1.jpg',
-    '/image2.jpg',
-    '/image3.jpg',
-    '/image4.jpg',
-    '/image5.jpg',
-  ];
+  if (images.length === 0) {
+    return (
+      <CarouselContainer elevation={3}>
+        <div style={{height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc'}}>
+          Nenhuma imagem encontrada
+        </div>
+      </CarouselContainer>
+    );
+  }
 
   return (
     <CarouselContainer elevation={3}>
