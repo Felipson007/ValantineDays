@@ -1,4 +1,4 @@
-import { Paper, Typography } from '@mui/material';
+import { Paper, Typography, Box } from '@mui/material';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
@@ -13,6 +13,37 @@ const MessageContainer = styled(Paper)`
 const AnimatedTypography = styled(motion(Typography))`
   margin-bottom: 1rem;
   color: #ff4081;
+`;
+
+const SmallHeart = styled(motion.div)`
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin-left: 8px;
+  vertical-align: middle;
+  position: relative;
+  top: 6px;
+  transform: rotate(45deg);
+  background-color: rgba(255, 64, 129, 0.9);
+  box-shadow: 0 0 12px rgba(255, 64, 129, 0.3);
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgba(255, 64, 129, 0.9);
+  }
+  &::before {
+    top: -16px;
+    left: 0;
+  }
+  &::after {
+    top: 0;
+    left: -16px;
+  }
 `;
 
 const LoveMessage = () => {
@@ -47,10 +78,25 @@ const LoveMessage = () => {
         sx={{ 
           color: '#f50057',
           fontStyle: 'italic',
-          marginTop: '1rem'
+          marginTop: '1rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.5rem',
         }}
       >
-        Com todo meu amor e carinho ❤️
+        Com todo meu amor e carinho
+        <SmallHeart
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.7, 1, 0.7],
+          }}
+          transition={{
+            duration: 1.2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
       </AnimatedTypography>
     </MessageContainer>
   );

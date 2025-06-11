@@ -1,34 +1,37 @@
 import { useState, useEffect } from 'react';
-import { Paper } from '@mui/material';
 import styled from '@emotion/styled';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const CarouselContainer = styled(Paper)`
-  padding: 1rem;
-  border-radius: 16px;
-  background: linear-gradient(145deg, #ffffff, #f5f5f5);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+const CarouselWrapper = styled('div')`
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  border-radius: 20px;
   overflow: hidden;
+  background: none;
+  box-shadow: none;
 `;
 
 const SlideImage = styled('div')`
-  height: 300px;
-  margin: 0 10px;
-  border-radius: 12px;
+  height: 420px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  
+  box-shadow: 0 8px 32px rgba(255, 64, 129, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  width: 100%;
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
-    
-    &:hover {
-      transform: scale(1.05);
-    }
+    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(255, 64, 129, 0.10);
   }
 `;
 
@@ -61,30 +64,44 @@ const ImageCarousel = () => {
   }, []);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
+    speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: true,
-    fade: true,
-    cssEase: 'linear',
+    autoplaySpeed: 3200,
+    arrows: false,
+    fade: false,
+    cssEase: 'cubic-bezier(0.23, 1, 0.32, 1)',
+    beforeChange: (current: number, next: number) => {
+      const imgs = document.querySelectorAll('.slick-slide img');
+      imgs.forEach((img, idx) => {
+        (img as HTMLElement).style.transform = idx === next + 1 ? 'scale(1.08)' : 'scale(1)';
+        (img as HTMLElement).style.opacity = idx === next + 1 ? '1' : '0.85';
+      });
+    },
+    afterChange: (current: number) => {
+      const imgs = document.querySelectorAll('.slick-slide img');
+      imgs.forEach((img, idx) => {
+        (img as HTMLElement).style.transform = idx === current + 1 ? 'scale(1.08)' : 'scale(1)';
+        (img as HTMLElement).style.opacity = idx === current + 1 ? '1' : '0.85';
+      });
+    },
   };
 
   if (images.length === 0) {
     return (
-      <CarouselContainer elevation={3}>
-        <div style={{height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc'}}>
+      <CarouselWrapper>
+        <div style={{height: 420, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc'}}>
           Nenhuma imagem encontrada
         </div>
-      </CarouselContainer>
+      </CarouselWrapper>
     );
   }
 
   return (
-    <CarouselContainer elevation={3}>
+    <CarouselWrapper>
       <Slider {...settings}>
         {images.map((image, index) => (
           <SlideImage key={index}>
@@ -92,7 +109,7 @@ const ImageCarousel = () => {
           </SlideImage>
         ))}
       </Slider>
-    </CarouselContainer>
+    </CarouselWrapper>
   );
 };
 

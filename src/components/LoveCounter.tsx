@@ -2,6 +2,7 @@ import { Paper, Typography, Box, Divider } from '@mui/material';
 import styled from '@emotion/styled';
 import { differenceInDays } from 'date-fns';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 const CounterContainer = styled(Paper)`
   padding: 2rem;
@@ -36,6 +37,7 @@ interface LoveCounterProps {
 
 const LoveCounter = ({ startDate }: LoveCounterProps) => {
   const days = differenceInDays(new Date(), startDate);
+  const [volume, setVolume] = useState(0.01); // volume baixo (3%)
 
   return (
     <CounterContainer elevation={3}>

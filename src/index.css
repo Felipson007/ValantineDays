@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light;
-  color: #213547;
-  background-color: #fff5f8;
+  color: #222;
+  background-color: transparent;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -23,6 +23,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background: transparent;
 }
 
 /* Estilização do carrossel */
@@ -42,15 +43,15 @@ body {
 .slick-prev:before,
 .slick-next:before {
   font-size: 24px !important;
-  color: #ff4081 !important;
+  color: #4B6B4B !important;
 }
 
 .slick-dots li button:before {
-  color: #ff4081 !important;
+  color: #A67C52 !important;
 }
 
 .slick-dots li.slick-active button:before {
-  color: #ff4081 !important;
+  color: #4B6B4B !important;
 }
 
 /* Animações suaves */
@@ -72,8 +73,16 @@ body {
   transition: opacity 300ms ease-in;
 }
 
+/* Blur do fundo (caso usado em algum componente) */
+.bg-blur {
+  filter: blur(4px) brightness(0.92) !important;
+}
+
 /* Responsividade */
 @media (max-width: 600px) {
+  html {
+    font-size: 15px;
+  }
   .slick-prev,
   .slick-next {
     display: none !important;
@@ -81,5 +90,9 @@ body {
   
   .slick-dots {
     bottom: -25px !important;
+  }
+  .MuiPaper-root, .MuiCard-root, .MuiContainer-root {
+    padding: 0.7rem !important;
+    border-radius: 12px !important;
   }
 }
